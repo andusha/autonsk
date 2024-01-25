@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles/base.css">
+    <link rel="stylesheet" href="../static/styles/modern-normalize.css">
+    <script src="../static/modules/lodash.js" defer></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block script %}{% endblock %}
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-logo logo">
+                    <img src="../static/assets/image/logo/logo.png" alt="">
+                </div>
+            </div>
+            <div class="header-center">
+                <input type="text" class="header-input" placeholder="Введите VIN, номер или название детали">
+                <div class="filter-container">
+                    <div class="filter">Фильтры</div>
+                    <div class="filter">Оригинальные запчасти</div>
+                    <div class="filter">Неоригинальные запчасти</div>
+                    <div class="filter">Запчасти ВАЗ, ГАЗ, КАМАЗ</div>
+                    <div class="filter">Запчасти для ТО</div>
+                    <div class="filter">Автомасла</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="icon">
+                    <img src="../static/assets/icons/gps.svg" alt="">
+                    <div class="icon-text">Новосибирск</div>
+                </div>
+                <div class="icon">
+                    <img src="../static/assets/icons/profile.svg" alt="">
+                    <div class="icon-text">Вход</div>
+                </div>
+                <div class="icon">
+                    <img src="../static/assets/icons/shop.svg" alt="">
+                    <div class="icon-text">Корзина</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer"><div class="footer-inner">
+            <ul class="footer-text-container">
+                <li class=""><a href="">Главная</a></li>
+                <li><a href="">Каталог</a></li>
+                <li><a href="">Поиск</a></li>
+            </ul>
+        <img src="../static/assets/image/logo/small-logo.png" alt="" class="footer-logo small-logo">
+        <hr>
+        <div class="footer-icon-container">
+            <img src="../static/assets/icons/vk.svg" alt="" class="footer-icon">
+            <img src="../static/assets/icons/yt.svg" alt="" class="footer-icon">
+            <img src="../static/assets/icons/tt.svg" alt="" class="footer-icon">
+            <img src="../static/assets/icons/telegram.svg" alt="" class="footer-icon">
+        </div>
+    </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/good.css">
+    <script src="../static/pages/good.js" defer></script>
+{% endblock %}
+
+{% block script %}
+<script>
+    const data = JSON.parse({{ context[1]|tojson|safe }})
+</script> 
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <section class="side-bar">
+        <div class="slider-wrapper" data-flag=true id="slider">
+            <div class="slider"></div>
+            <div class="range-input">
+                <input type="range" class="range-min" min="{{ context[0].good_offers.min_price }}"
+                 max="{{ context[0].good.max_price }}"
+                value="{{ context[0].good_offers.min_price }}">
+                <input type="range" class="range-max" min="{{ context[0].good_offers.min_price }}"
+                 max="{{ context[0].good.max_price }}"
+                 value="{{ context[0].good.max_price }}">
+            </div>
+            <div class="price-input">
+                <div class="field"><input type="number" class="input-min" value="{{ context[0].good_offers.min_price }}"></div>
+                <div class="separator">-</div>
+                <div class="field"><input type="number" class="input-max" value="{{ context[0].good.max_price }}"></div>
+            </div>
+        </div>
+    </section>
+    <main class="main">
+        <div class="product-card">
+            <div class="product-titles" data-product-id="{{ context[0].good.article }}"
+             data-product-title="{{ context[0].good.title }}"
+             data-manufacturer-title="{{ context[0].good.manufacturer_title }}">
+                <h1 class="brand-title">
+                    {{ context[0].good.manufacturer_title }}
+                    <span class="product-article">{{ context[0].good.article }}</span>
+                    </h1>
+                <h2 class="product-title">{{ context[0].good.title }}</h2>
+            </div>
+            <div class="product-attrs">
+                <div class="photo">
+                    <img src="{{ context[0].good.img_path }}" alt="" class="product-img">
+                </div>
+                <div class="attrs">
+                    <ul class="attr-list">
+                        <li class="attr-row">
+                            <div class="attr">Артикул</div>
+                            <div class="attr-value">{{ context[0].good.article }}</div>
+                        </li>
+                        <li class="attr-row">
+                            <div class="attr">Производитель</div>
+                            <div class="attr-value">{{ context[0].good.manufacturer_title }}</div>
+                        </li>
+                        {% for attr in context[0].good_attrs %}
+                        <li class="attr-row">
+                            <div class="attr">{{ attr.name }}</div>
+                            <div class="attr-value">{{ attr.value }}</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="offers">
+                    <div class="offer">
+                        <div class="offer-title">Самый дешевый</div>
+                        <div class="offer-price">{{ context[0].good_offers.min_price }}</div>
+                        <div class="offer-period">{{ context[0].good_offers.min_price_period }}</div>
+                    </div>
+                    <div class="offer">
+                        <div class="offer-title">Самый быстрый</div>
+                        <div class="offer-price">{{ context[0].good_offers.min_period_price }}</div>
+                        <div class="offer-period">{{ context[0].good_offers.min_period }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="non-retail">
+            <thead id="thead" data-flag=false>
+                <tr>
+                    <th>
+                        <div class="th-inner">
+                            <div class="thead-text">Производитель</div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-inner">
+                            <div class="thead-text">Номер</div>
+                        </div>
+                    </th>
+                    <th class="th-sortable" data-type="info" data-sort-method="none">
+                        <div class="th-inner">
+                            <div class="thead-text">Инфо</div>
+                            <div class="thead-arrows"></div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-inner">
+                            <div class="thead-text">Наименование</div>
+                        </div>
+                    </th>
+                    <th class="th-sortable" data-type="amount" data-sort-method="none">
+                        <div class="th-inner">
+                            <div class="thead-text">Наличие</div>
+                            <div class="thead-arrows"></div>
+                        </div>
+                    </th>
+                    <th class="th-sortable" data-type="period" data-sort-method="none">
+                        <div class="th-inner">
+                            <div class="thead-text">Срок</div>
+                            <div class="thead-arrows"></div>
+                        </div>
+                    </th>
+                    <th class="th-sortable" data-type="price" data-sort-method="none">
+                        <div class="th-inner">
+                            <div class="thead-text">Цена</div>
+                            <div class="thead-arrows"></div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="th-inner">
+                            <div class="thead-text">Заказ</div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr class="title-row">
+                    <td colspan=8>
+                        <div class="title-container">
+                            <div class="title-section">Запрошенный номер</div>
+                            <div class="total-section">{{ context[0].table_products|length }}</div>
+                        </div>
+                    </td>
+                </tr>
+                {% for section in context[0].table_products %}
+                <tr>
+                    <td><div class="table-manufacturer-title">{{ context[0].good.manufacturer_title }}</div></td>
+                    <td><div class="table-good-number">{{ context[0].good.article }}</div></td>
+                    <td>
+                        <div class="table-good-info">
+                        {% if section.path %}
+                            {% if section.atach == 1 %}
+                            <img src="{{ section.path }}" title="Дилер">    
+                            {% else %}
+                            <img src="{{ section.path }}" title="Надёжный поставщик">   
+                            {% endif %}  
+                        {% endif %}
+                        </div>
+                    </td>
+                    <td><div class="table-good-title">{{ context[0].good.title }}</div></td>
+                    <td><div class="table-good-amount">{{ section.amount }}</div></td>
+                    <td><div class="table-good-period">{{ section.period }}</div></td>
+                    <td><div class="table-good-price">{{ section.price }}</div></td>
+                    <td><button>))</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}

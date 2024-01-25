@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/addGood.css">
+    <script src="../static/pages/addGood.js" defer></script>
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <section class="side-bar">
+        <select class="select" name="good" placeholder="Выберите вид товара">
+            <option value=""></option>
+            {% for good in goods %}
+                <option value="{{good['id']}}">{{good['title']}}</option>
+            {% endfor %}	
+        </select>
+    </section>
+    <main class="main">
+        <div class="product-card">
+            <div class="product-title">
+                <h1 class="brand-title"><input type="text"></h1>
+                <h2 class="product-title"><input type="text"></h2>
+            </div>
+                <div class="product-attrs">
+                    <div class="photo">
+                        <img src="../static/assets/icons/add_good.svg" alt="">
+                        <div class="photo-text">Добавить фото</div>
+                    </div>
+                <div class="attrs">
+                    <ul class="attr-list">
+                        <li class="attr-row">
+                            <div class="attr">Артикул</div>
+                            <div class="attr-value"><input type="text"></div>
+                        </li>
+                        <li class="attr-row">
+                            <div class="attr">Производитель</div>
+                            <div class="attr-value"><input type="text"></div>
+                        </li>
+                    </ul>
+                    <div class="add-attr"><img src="../static/assets/icons/plus.svg" alt=""></div>
+                </div>
+                <div class="entity">
+                    <input type="number" class="price">
+                    <input type="number" class="amount">
+                    <input type="number" class="period">
+                </div>
+            </div>
+        </div>
+    </main> 
+</div>  
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}

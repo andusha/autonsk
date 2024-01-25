@@ -1,0 +1,18 @@
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/form.css">
+    <script src="../static/pages/reg-form-validation.js" defer></script>
+{% endblock %}
+{% block content %}
+<main class="main">
+    <div class="form-header">
+        <h1>Регистрация</h1>
+    </div>
+    {% for msg in get_flashed_messages() %}
+    <div class="flash">{{msg}}</div>
+    {% endfor %}
+    <div class="reg-2-type-selection">
+        <button class="selection first-selection" type="button" id="fiz">Физическое лицо</button>
+        <button class="selection second-selection" type="button" id="ur">Юридическое лицо</button>
+    </div>
+</main>   
+{% endblock %}

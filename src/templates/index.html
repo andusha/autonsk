@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="../static/styles/index.css">
+    <script src="../static/modules/slider.js" defer></script>
+    <script src="../static/pages/index.js" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="main">
+    <section class="slider">
+        <div class="slides-container">
+            <div class="slide">
+                <img src="../static/assets/image/slider/Group2.jpg" alt="" class="slider-image">
+            </div>
+            <div class="slide invisible">
+                <img src="../static/assets/image/slider/Group1.png" alt="" class="slider-image">
+            </div>
+            <div class="slide invisible">
+                <img src="../static/assets/image/slider/group3.jpg" alt="" class="slider-image">
+            </div>
+            <div class="buttons">
+                <div class="prev button">&#10094;</div>
+                <div class="next button">&#10095;</div>
+            </div>
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+        </div>
+    </section>
+    <section class="products">
+        <h2 class="recommendation-products">Рекомендуем</h2>   
+        <div class="product-container">
+            {% for good in goods %}
+                <div class="product">
+                    <a href="{{url_for('show_good', id=good['id'])}}" class="product-link">
+                    <img src="{{ good['img_path'] }}" alt="{{ good['title']}}" title="{{ good['title']}}" class="product-image">
+                    <div class="product-text-container">
+                        <h3 class="product-price">{{ good['price'] }} ₽</h3>
+                        <p class="product-name">{{ good['title']}}</p>
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="proposals">
+        <div class="proposal-container">
+            <div class="proposal"><a href=""><img class="proposal-image" src="../static/assets/image/proposals/first.png" alt=""></a></div>
+        <div class="proposal"><a href=""><img class="proposal-image" src="../static/assets/image/proposals/second.png" alt=""></a></div>
+        </div>
+    </section>
+</main>
+{% endblock %}

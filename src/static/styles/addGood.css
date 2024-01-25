@@ -1,0 +1,43 @@
+.main-content{
+    display: flex;
+    height: 50vh;
+}
+.side-bar{
+    width: 18vw;
+}
+.product-attrs{
+    display: flex;
+    gap: 2rem;
+}
+.attrs{
+    width: 40vw;
+}
+.product-img{
+    max-height: 200px;
+    height: 100%;
+
+}
+.attr-list{
+    display: table;
+    width: 100%;
+}
+.attr-row{
+    display: table-row;
+    height: 1.3rem;
+}
+.attr, .attr-value{
+    display: table-cell;	
+}
+.attr{
+    width: 50%;
+}
+.entity{
+    display: flex;
+    flex-direction: column;
+}
+.photo, .add-attr{
+    text-align: center;
+}
+.select{
+    width: 100%;
+}
